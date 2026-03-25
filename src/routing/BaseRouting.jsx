@@ -73,7 +73,7 @@ export const BaseRouting = () => {
       {/* {authSelect?.isFetching === false && */}
 
       <Routes >
-        {isAccessToken && authSelect?.data?.accessToken ?
+        {(isAccessToken || (localStorage.getItem("accessToken") && localStorage.getItem("refreshToken"))) && (authSelect?.data?.accessToken || localStorage.getItem("accessToken")) ?
           <Route path="/device-lock/*" element={<PrivateWrap />} /> :
           <>
           <Route path="/" element={<PublicWrap />} />
