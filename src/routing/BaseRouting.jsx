@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Routes, Route, useLocation, useNavigate, Navigate, BrowserRouter } from "react-router-dom";
+import { Routes, Route, useLocation, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { authSelector } from "../redux/selector/auth/authSelector";
 import { useAlert } from "../context/customContext/AlertContext";
@@ -7,10 +7,9 @@ import { authActions } from "../redux/reducers/auth/authSlice";
 import axiosClient from "../api/axiosClient";
 import Loader from "../component/loader/Loader";
 import PrivateWrap from "../pages/private/PrivateWrap";
-import SignUp from "../pages/private/auth/SignUp";
-import SignIn from "../pages/private/auth/SignIn";
 import { PublicWrap } from "../pages/public/PublicWrap";
 import PageNotFound from "../component/pageNotFound/PageNotFound";
+import { PrivateRouting } from "./private/PrivateRouting";
 
 export const BaseRouting = () => {
   const location = useLocation();
@@ -72,9 +71,10 @@ export const BaseRouting = () => {
       {/* {authSelect?.isFetching === false && */}
 
       <Routes >
-        {(isAccessToken && authSelect && authSelect?.data &&
-          authSelect?.data?.accessToken && localStorage.getItem("accessToken")) ?
-          <Route path="/device-lock/*" element={<PrivateWrap />} /> :
+        {isAccessToken && authSelect?.data?.accessToken ?
+          <Route path="/device-lock" element={<PrivateWrap />} >
+            <Route path="*" element={<PrivateRouting />} />
+          </Route> :
           <>
           <Route path="/" element={<PublicWrap />} />
           <Route path="/*" element={<PageNotFound />} />
