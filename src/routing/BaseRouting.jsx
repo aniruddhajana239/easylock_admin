@@ -21,21 +21,20 @@ export const BaseRouting = () => {
 
   const authSelect = useSelector(authSelector);
   useEffect(() => {
-    if (
-      localStorage.getItem("refreshToken") &&
-      localStorage.getItem("accessToken")
-    ) {
+    const storedRefreshToken = localStorage.getItem("refreshToken");
+    const storedAccessToken = localStorage.getItem("accessToken");
+    
+    if (storedRefreshToken && storedAccessToken) {
+      // Keep tokens in localStorage until auth is confirmed
       setIsAccessToken(true);
       dispatch(
         authActions.refreshLogin({
-          token: localStorage.getItem("refreshToken"),
+          token: storedRefreshToken,
         })
       );
-      localStorage.clear()
     }
     else {
       setIsAccessToken(false)
-      //  navigate('/home')
     }
   }, [dispatch]);
 
@@ -45,14 +44,17 @@ export const BaseRouting = () => {
         'Authorization': 'Bearer ' + authSelect?.data?.accessToken
       };
       setIsAccessToken(true)
-      localStorage.clear()
       localStorage.setItem('refreshToken', authSelect?.data?.refreshToken);
       localStorage.setItem('accessToken', authSelect?.data?.accessToken);
-      location.pathname?.includes("device-lock") && navigate(location.pathname)
+      if (location.pathname?.includes("device-lock")) {
+        navigate(location.pathname)
+      }
     }
     else if (authSelect?.data?.status === false && authSelect?.data?.message) {
       showAlert("error", authSelect?.data?.message);
       dispatch(authActions.clearMessage());
+      localStorage.clear();
+      setIsAccessToken(false);
     }
   }, [authSelect])
   useEffect(() => {
