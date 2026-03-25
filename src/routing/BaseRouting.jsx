@@ -72,9 +72,7 @@ export const BaseRouting = () => {
 
       <Routes >
         {isAccessToken && authSelect?.data?.accessToken ?
-          <Route path="/device-lock" element={<PrivateWrap />} >
-            <Route path="*" element={<PrivateRouting />} />
-          </Route> :
+          <Route path="/device-lock/*" element={<PrivateWrap />} /> :
           <>
           <Route path="/" element={<PublicWrap />} />
           <Route path="/*" element={<PageNotFound />} />
