@@ -1,6 +1,6 @@
 import { BrowserRouter } from "react-router-dom";
 import { BaseRouting } from "./routing/BaseRouting";
-import './app.css'
+import './App.css'
 import { AlertProvider } from "./context/customContext/AlertContext";
 const App = () => {
     return (
