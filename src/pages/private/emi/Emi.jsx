@@ -1,5 +1,5 @@
 // pages/Emi.js
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import Breadcrumb from "../../../component/breadcrumb/Breadcrumb";
 import Table from "../../../component/table/Table";
 import { useNavigate } from "react-router";
@@ -13,16 +13,13 @@ import { emiActions } from "../../../redux/reducers/emi/EmiSlice";
 import { 
   FaSearch, 
   FaUser, 
-  FaPhone, 
-  FaEnvelope, 
-  FaMoneyBillWave, 
-  FaCalendarAlt, 
+  FaPhone,
   FaStore,
   FaCheckCircle,
   FaTimesCircle,
   FaCoins
 } from "react-icons/fa";
-import { BiCalendar, BiUser } from "react-icons/bi";
+import { BiCalendar } from "react-icons/bi";
 import { MdEmail } from "react-icons/md";
 
 const Emi = () => {
