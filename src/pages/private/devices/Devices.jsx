@@ -105,7 +105,7 @@ const Devices = () => {
           }
         >
           {/* Device */}
-          <td className="py-4 px-4">
+          <td className="py-4 px-4 whitespace-nowrap">
             <div className="flex flex-col">
               <span className="font-medium text-slate-900 capitalize">
                 {item?.brandName} {item?.modelName}
@@ -178,7 +178,7 @@ const Devices = () => {
               const { date, time } = convertUTCToLocal(item?.enrollmentDate);
 
               return (
-                <div className="flex flex-col">
+                <div className="flex flex-col whitespace-nowrap">
                   <span className="text-slate-900 font-medium">{date}</span>
                   <span className="text-xs text-slate-500">{time}</span>
                 </div>
