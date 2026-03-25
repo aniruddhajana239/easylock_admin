@@ -286,103 +286,102 @@ const Devices = () => {
         >
           {/* Search and Filter Section */}
           <div className="mb-6 space-y-4">
-            <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-4">
-              {/* Search Input */}
-              <div className="w-full lg:w-96">
-                <label
-                  htmlFor="search"
-                  className="block text-sm font-medium text-slate-600 mb-1.5"
-                >
-                  Search Devices
-                </label>
-                <div className="relative">
-                  <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                    <FaSearch className="h-4 w-4 text-slate-400" />
-                  </div>
+            {/* Search Input - Full width on mobile, fixed width on desktop */}
+            <div className="w-full">
+              <label
+                htmlFor="search"
+                className="block text-sm font-medium text-slate-600 mb-1.5"
+              >
+                Search Devices
+              </label>
+              <div className="relative">
+                <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                  <FaSearch className="h-4 w-4 text-slate-400" />
+                </div>
+                <input
+                  id="search"
+                  value={searchText}
+                  onChange={handleSearchChange}
+                  type="text"
+                  className="block w-full pl-10 pr-3 py-2.5 text-sm text-slate-900 bg-white border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-slate-200 focus:border-slate-300 transition-all duration-150"
+                  placeholder="Search by device name, IMEI, or customer..."
+                />
+              </div>
+            </div>
+
+            {/* Filters Row - Responsive layout */}
+            <div className="flex flex-col xl:flex-row xl:items-end xl:justify-between gap-4">
+              {/* Date Range Filters */}
+              <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
+                <div className="w-full sm:w-40">
+                  <label
+                    htmlFor="fromDate"
+                    className="block text-sm font-medium text-slate-600 mb-1.5"
+                  >
+                    From Date
+                  </label>
                   <input
-                    id="search"
-                    value={searchText}
-                    onChange={handleSearchChange}
-                    type="text"
-                    className="block w-full pl-10 pr-3 py-2.5 text-sm text-slate-900 bg-white border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-slate-200 focus:border-slate-300 transition-all duration-150"
-                    placeholder="Search by device name, IMEI, or customer..."
+                    type="date"
+                    id="fromDate"
+                    className="block w-full px-3 py-2.5 text-sm text-slate-900 bg-white border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-slate-200 focus:border-slate-300 transition-all duration-150"
+                    value={fromDate}
+                    onChange={(e) => setFromDate(e.target.value)}
                   />
+                </div>
+                <div className="w-full sm:w-40">
+                  <label
+                    htmlFor="toDate"
+                    className="block text-sm font-medium text-slate-600 mb-1.5"
+                  >
+                    To Date
+                  </label>
+                  <input
+                    type="date"
+                    id="toDate"
+                    className="block w-full px-3 py-2.5 text-sm text-slate-900 bg-white border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-slate-200 focus:border-slate-300 transition-all duration-150"
+                    value={toDate}
+                    onChange={(e) => setToDate(e.target.value)}
+                  />
+                </div>
+                <div className="flex items-end">
+                  <button
+                    onClick={handleApplyDateFilter}
+                    disabled={!fromDate && !toDate}
+                    className="px-4 py-2.5 text-sm font-medium text-white bg-slate-800 rounded-lg hover:bg-slate-700 disabled:opacity-40 disabled:cursor-not-allowed transition-colors duration-150"
+                  >
+                    Apply
+                  </button>
                 </div>
               </div>
 
-              <div className="flex gap-4">
-                {/* Date Range */}
-                <div className="flex flex-col sm:flex-row gap-4">
-                  <div>
-                    <label
-                      htmlFor="fromDate"
-                      className="block text-sm font-medium text-slate-600 mb-1.5"
-                    >
-                      From Date
-                    </label>
-                    <input
-                      type="date"
-                      id="fromDate"
-                      className="block w-full px-3 py-2.5 text-sm text-slate-900 bg-white border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-slate-200 focus:border-slate-300 transition-all duration-150"
-                      value={fromDate}
-                      onChange={(e) => setFromDate(e.target.value)}
-                    />
-                  </div>
-                  <div>
-                    <label
-                      htmlFor="toDate"
-                      className="block text-sm font-medium text-slate-600 mb-1.5"
-                    >
-                      To Date
-                    </label>
-                    <input
-                      type="date"
-                      id="toDate"
-                      className="block w-full px-3 py-2.5 text-sm text-slate-900 bg-white border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-slate-200 focus:border-slate-300 transition-all duration-150"
-                      value={toDate}
-                      onChange={(e) => setToDate(e.target.value)}
-                    />
-                  </div>
-                  <div className="flex items-end">
-                    <button
-                      onClick={handleApplyDateFilter}
-                      disabled={!fromDate && !toDate}
-                      className="px-4 py-3 text-sm font-medium text-white bg-slate-800 rounded-lg hover:bg-slate-700 disabled:opacity-40 disabled:cursor-not-allowed transition-colors duration-150"
-                    >
-                      Apply
-                    </button>
-                  </div>
-                </div>
-
-                {/* Device Status Filter */}
-                <div className="w-full lg:w-48">
-                  <label
-                    htmlFor="deviceStatus"
-                    className="block text-sm font-medium text-slate-600 mb-1.5"
-                  >
-                    Device Status
-                  </label>
-                  <select
-                    id="deviceStatus"
-                    value={deviceStatus}
-                    onChange={(e) => {
-                      setDeviceStatus(e.target.value);
-                      setPage(0);
-                    }}
-                    className="block w-full px-3 py-2.5 text-sm text-slate-900 bg-white border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-slate-200 focus:border-slate-300 transition-all duration-150"
-                  >
-                    <option value="">All</option>
-                    <option value="locked">Locked</option>
-                    <option value="unlocked">Unlocked</option>
-                    <option value="removed">Removed</option>
-                  </select>
-                </div>
+              {/* Device Status Filter */}
+              <div className="w-full sm:w-48 xl:w-48">
+                <label
+                  htmlFor="deviceStatus"
+                  className="block text-sm font-medium text-slate-600 mb-1.5"
+                >
+                  Device Status
+                </label>
+                <select
+                  id="deviceStatus"
+                  value={deviceStatus}
+                  onChange={(e) => {
+                    setDeviceStatus(e.target.value);
+                    setPage(0);
+                  }}
+                  className="block w-full px-3 py-2.5 text-sm text-slate-900 bg-white border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-slate-200 focus:border-slate-300 transition-all duration-150"
+                >
+                  <option value="">All</option>
+                  <option value="locked">Locked</option>
+                  <option value="unlocked">Unlocked</option>
+                  <option value="removed">Removed</option>
+                </select>
               </div>
             </div>
 
             {/* Active Filters Indicator */}
             {(searchText || fromDate || toDate || deviceStatus) && (
-              <div className="flex items-center gap-2 text-sm text-slate-500 border-t border-slate-100 pt-4">
+              <div className="flex flex-wrap items-center gap-2 text-sm text-slate-500 border-t border-slate-100 pt-4">
                 <span className="font-medium">Active filters:</span>
                 {searchText && (
                   <span className="inline-flex items-center px-2.5 py-0.5 rounded-full bg-slate-100 text-slate-700 text-xs">
