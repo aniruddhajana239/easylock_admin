@@ -1,0 +1,1 @@
+export const activitySelector = state => state?.activity

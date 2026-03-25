@@ -1,0 +1,1 @@
+export const distributorSelector = state => state?.distributor

@@ -1,0 +1,1 @@
+export const emiSelector = state => state?.emi

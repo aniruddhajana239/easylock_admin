@@ -1,0 +1,1 @@
+export const PendingAndRejectedDistributorSelector = state => state?.pendingAndRejectDistributor

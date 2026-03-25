@@ -1,0 +1,1 @@
+export const authPasswordSelector = (state) => state.auth_password;

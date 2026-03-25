@@ -1,0 +1,1 @@
+export const packageSelector = state => state?.package

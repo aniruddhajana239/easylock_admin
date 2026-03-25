@@ -1,0 +1,1 @@
+export const deviceSelector = state => state?.device

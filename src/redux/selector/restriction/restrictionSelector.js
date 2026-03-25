@@ -1,0 +1,1 @@
+export const restrictionSelector = state => state?.restriction

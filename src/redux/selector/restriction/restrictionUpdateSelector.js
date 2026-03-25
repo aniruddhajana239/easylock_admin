@@ -1,0 +1,1 @@
+export const restrictionUpdateSelector = state => state?.restriction_update;

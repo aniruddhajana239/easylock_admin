@@ -1,0 +1,1 @@
+export const retailerSelector = state => state?.retailer

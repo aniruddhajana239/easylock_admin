@@ -1,0 +1,1 @@
+export const forgotPasswordSelector = state => state?.forgot_password

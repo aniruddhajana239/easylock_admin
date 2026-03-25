@@ -1,0 +1,16 @@
+  useEffect(() => {
+    if (forgotPasswordData && forgotPasswordData?.data?.status) {
+      if (forgotPasswordData.data.message) {
+        showAlert("success", forgotPasswordData?.data?.message);
+        dispatch(ForgotPasswordActions.reset());
+        dispatch(ForgotPasswordActions.clearMessage());
+      }
+      if (forgotPasswordData?.data?.data?.user_id) {
+        navigate("/", { replace: true });
+      }
+    } else if (forgotPasswordData?.data?.status === false) {
+      showAlert("error", forgotPasswordData.data.message);
+      dispatch(ForgotPasswordActions.reset());
+      dispatch(ForgotPasswordActions.clearMessage());
+    }
+  }, [forgotPasswordData, dispatch, navigate, showAlert]);

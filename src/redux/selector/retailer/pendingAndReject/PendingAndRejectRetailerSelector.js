@@ -1,0 +1,1 @@
+export const pendingAndRejectRetailerSelector = state => state?.pendingAndRejectRetailer

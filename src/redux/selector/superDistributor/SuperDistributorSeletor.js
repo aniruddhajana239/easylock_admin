@@ -1,0 +1,1 @@
+export const superDistributorSelector = state => state?.superDistributor
